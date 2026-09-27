@@ -1,0 +1,256 @@
+/* =========================================
+   Responsive CV — Hsyn Mekdad
+   Mobile-first: base = phone, then tablet, then desktop
+   ========================================= */
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --ink: #14213d;        /* main text, navy */
+  --muted: #5c677d;      /* secondary text */
+  --cedar: #1f7a5c;      /* accent, cedar green */
+  --line: #c9d1db;       /* borders */
+  --paper: #ffffff;      /* card background */
+  --bg: #eef1f4;         /* page background */
+
+  --font: "Archivo", "Segoe UI", Arial, sans-serif;
+  --radius: 6px;
+  --gap: 1.5rem;
+}
+
+/* ---------- 2. Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+h1, h2, h3, p, ul, ol, dl { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+
+a { color: var(--cedar); text-underline-offset: 3px; }
+a:focus-visible, .btn:focus-visible {
+  outline: 3px solid var(--cedar);
+  outline-offset: 2px;
+}
+
+/* ---------- 3. Header ---------- */
+.top {
+  background: var(--ink);
+  color: #fff;
+  padding: 2rem 0;
+}
+
+.top__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;       /* phone: stacked */
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.photo {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--cedar);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.name {
+  font-size: clamp(2.25rem, 8vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.role {
+  margin-top: 0.4rem;
+  color: #c9d1db;
+  font-size: 1.05rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border: 2px solid #fff;
+  border-radius: var(--radius);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.btn:hover { background: #fff; color: var(--ink); }
+
+/* ---------- 4. Layout (Grid) ---------- */
+.layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--gap) 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;   /* phone: one column */
+  gap: var(--gap);
+}
+
+.side, .main {
+  display: grid;
+  gap: var(--gap);
+  align-content: start;
+}
+
+/* ---------- 5. Blocks ---------- */
+.block {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 3px solid var(--cedar);
+  display: inline-block;
+}
+
+h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+
+.lead { font-size: 1.1rem; max-width: 65ch; }
+.where { color: var(--muted); font-size: 0.95rem; }
+
+/* Contact list */
+.contact li { padding: 0.45rem 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.contact li:last-child { border-bottom: 0; }
+.contact span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Skills table */
+.specs { width: 100%; border-collapse: collapse; }
+.specs th, .specs td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.specs th { width: 40%; font-weight: 700; padding-right: 0.75rem; }
+.specs tr:last-child th, .specs tr:last-child td { border-bottom: 0; }
+
+/* Languages */
+.langs {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: 0.4rem;
+}
+.langs dt { font-weight: 700; }
+.langs dd { margin: 0; color: var(--muted); }
+
+/* Timeline (education, experience) */
+.timeline li {
+  position: relative;
+  padding-left: 1.4rem;
+  padding-bottom: 1.25rem;
+  border-left: 2px solid var(--line);
+}
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 0.35rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cedar);
+}
+.timeline time {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cedar);
+}
+.timeline p:last-child { margin-top: 0.3rem; }
+
+/* Projects */
+.project + .project {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+.project p:not(.where) { margin-top: 0.3rem; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+.tags li {
+  font-size: 0.8rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--cedar);
+  border-radius: 999px;
+  color: var(--cedar);
+}
+
+/* Footer */
+.foot {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- 6. Tablet (≥ 600px) ---------- */
+@media (min-width: 600px) {
+  .top__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .btn { margin-left: auto; }
+
+  /* sidebar blocks sit side by side */
+  .side { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- 7. Desktop (≥ 960px) ---------- */
+@media (min-width: 960px) {
+  .photo { width: 120px; height: 120px; font-size: 2.25rem; }
+
+  .layout { grid-template-columns: 320px 1fr; }  /* sidebar + main */
+  .side { grid-template-columns: 1fr; }
+  .block { padding: 1.5rem; }
+}
+
+/* ---------- 8. Print ---------- */
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .btn { display: none; }
+  .top { background: #fff; color: var(--ink); padding: 0 0 1rem; border-bottom: 2px solid var(--ink); }
+  .role { color: var(--muted); }
+  .layout { grid-template-columns: 30% 1fr; padding: 1rem 0; }
+  .side { grid-template-columns: 1fr; }
+  .block { border: 0; padding: 0; break-inside: avoid; }
+  .foot { display: none; }
+}
+
+/* ---------- 9. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
